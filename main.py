@@ -1,5 +1,5 @@
-from package.models.estoque import Estoque
+from package.controllers.feira import Feira
 
 if __name__ == "__main__":
-    sistema_estoque = Estoque()
-    sistema_estoque.menu()
+    sistema = Feira()
+    sistema.menu()

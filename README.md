@@ -8,7 +8,7 @@ se registrar como cliente para que os produtos sejam
 entregues em sua residência.
 
 ---------------------CASOS DE USO---------------------
-CASO DE USO 1: Fazer pedido online.
+    CASO DE USO 1: Fazer pedido online.
 Ator: Cliente
 Descrição:
 1.Cenário principal: 

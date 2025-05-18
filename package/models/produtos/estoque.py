@@ -1,28 +1,49 @@
-from package.models.frutas import Fruta  
+from package.models.produtos.frutas import Fruta
+from package.controllers.serialobjson import DataRecord
 
 class Estoque:
     def __init__(self):
-        self.frutas = {}
+        self.db = DataRecord("package/controllers/db/database_produtos.json")
+        self.frutas = self.__carregar_frutas()
+
+    def __carregar_frutas(self):
+        dados = self.db.read()
+        if not dados:
+            return {}
+        return {item["nome"]: Fruta.from_dict(item) for item in dados}
+
+    def salvar_frutas(self):
+        dados = [fruta.to_dict() for fruta in self.frutas.values()]
+        self.db.overwrite(dados)
 
     def adicionar_fruta(self):
         nome = input("Qual o nome da fruta que deseja adicionar? ").strip().title()
+
         try:
             quantidade = int(input("Quantidade: "))
             if quantidade <= 0:
                 raise ValueError
         except ValueError:
             print("Quantidade inválida! Use números positivos.")
-        return
+            return
+
+        try:
+            preco = float(input("Qual o preço da fruta?: "))
+            if preco <= 0:
+                raise ValueError
+        except ValueError:
+            print("Preço inválido! Use números positivos.")
+            return
 
         if nome in self.frutas:
             self.frutas[nome].quantidade += quantidade
+            self.frutas[nome].preco = preco  
             print(f"Quantidade de {nome} atualizada para {self.frutas[nome].quantidade}.")
         else:
-            self.frutas[nome] = Fruta(nome, quantidade)
-            print(f"{nome} adicionada ao estoque com {quantidade} unidades.")
-            preco = float(input("Qual o preço da fruta?: "))
-            self.frutas[nome].preco = preco
-            print(f"Preço de {nome} definido como R$ {preco:.2f} cada.")
+            self.frutas[nome] = Fruta(nome, quantidade, preco)
+            print(f"{nome} adicionada ao estoque com {quantidade} unidades e preço R$ {preco:.2f}.")
+
+        self.salvar_frutas()
 
     def mostrar_estoque(self):
         if not self.frutas:

@@ -28,3 +28,9 @@ class DataRecord:
         self.__models.append(data)
         with open(self.filepath, 'w', encoding='utf-8') as fjson:
             json.dump(self.__models, fjson, indent=4)
+
+    def overwrite(self, new_data):
+        self.__models = new_data
+        with open(self.filepath, 'w', encoding='utf-8') as fjson:
+            json.dump(self.__models, fjson, indent=4)
+

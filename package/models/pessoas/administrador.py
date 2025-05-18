@@ -1,4 +1,4 @@
-from package.models.pessoa import Pessoa
+from package.models.pessoas.pessoa import Pessoa
 
 class Administrador(Pessoa):
     def __init__(self, nome, login, senha):

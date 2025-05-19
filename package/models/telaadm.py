@@ -3,11 +3,10 @@ from package.models.produtos.estoque import Estoque
 from time import sleep
 
 class TelaAdm:
-    def __init__(self, estoque):
+    def __init__(self, estoque: Estoque):
+        self.clientes = DataRecord("package/controllers/db/database_clientes.json")
+        self.produtos = DataRecord("package/controllers/db/database_produtos.json") 
         self.estoque = estoque
-        self.clientes = DataRecord("database_clientes.json")
-        self.produtos = DataRecord("database_produtos.json")
-        self.estoque = Estoque()
 
     def menu(self):
         while True:
@@ -40,27 +39,16 @@ class TelaAdm:
         else:
             for i, cliente in enumerate(clientes):
                 print(f"{i + 1}. Nome: {cliente['nome']}")
-                sleep(2)
-                return True
+        
     
     def confirmar_entrega(self):
         print("\n=== CONFIRMAR ENTREGA ===")
+        nome = input("Nome do cliente que deseja confirmar entrega: ").strip().title()
         clientes = self.clientes.read()
-        if not clientes:
-            print("Nenhum cliente cadastrado.")
-            return
-
         for i, cliente in enumerate(clientes):
-            print(f"{i + 1}. Nome: {cliente['nome']}")
-
-        try:
-            escolha = int(input("Escolha o número do cliente para confirmar a entrega: ")) - 1
-            if 0 <= escolha < len(clientes):
-                cliente_confirmado = clientes.pop(escolha)  
-                print(f"Entrega confirmada para {cliente_confirmado['nome']}.")
-                self.clientes.write(clientes)
-
-            else:
-                print("Opção inválida.")
-        except ValueError:
-            print("Por favor, insira um número válido.")
+            if cliente['nome'] == nome:
+                print(f"Entrega confirmada para {nome}!")
+                del clientes[i]
+                self.clientes.overwrite(clientes) 
+                return
+        print("Cliente não encontrado.")

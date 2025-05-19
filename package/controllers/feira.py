@@ -8,7 +8,7 @@ class Feira:
     def __init__(self):
         self.estoque = Estoque()
         self.adm = TelaAdm(self.estoque)
-        self.cliente = TelaCliente()
+        self.cliente = TelaCliente(self.estoque)
         self.admin = Administrador("Admin", "login123", "senha321")
 
     def menu(self):
@@ -26,8 +26,7 @@ class Feira:
                     print("Login ou senha incorretos.")
             elif opcao == "2":
                 print("Bem-vindo à área do cliente!")
-                self.cliente.dados()
-                self.cliente.menu(self.estoque)
+                self.cliente.menu()
             elif opcao == "3":
                 print("Encerrando sistema...")
                 sleep(2)

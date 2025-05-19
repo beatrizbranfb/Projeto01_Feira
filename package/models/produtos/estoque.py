@@ -4,17 +4,15 @@ from package.controllers.serialobjson import DataRecord
 class Estoque:
     def __init__(self):
         self.db = DataRecord("package/controllers/db/database_produtos.json")
-        self.frutas = self.__carregar_frutas()
+        self.frutas = {}
+        self.__carregar_frutas()
 
     def __carregar_frutas(self):
         dados = self.db.read()
-        if not dados:
-            return {}
-        return {item["nome"]: Fruta.from_dict(item) for item in dados}
-
-    def salvar_frutas(self):
-        dados = [fruta.to_dict() for fruta in self.frutas.values()]
-        self.db.overwrite(dados)
+        if dados:
+            for f in dados:
+                fruta = Fruta(f['nome'], f['quantidade'], f['preco'])
+                self.frutas[fruta.nome] = fruta
 
     def adicionar_fruta(self):
         nome = input("Qual o nome da fruta que deseja adicionar? ").strip().title()
@@ -43,7 +41,12 @@ class Estoque:
             self.frutas[nome] = Fruta(nome, quantidade, preco)
             print(f"{nome} adicionada ao estoque com {quantidade} unidades e preço R$ {preco:.2f}.")
 
-        self.salvar_frutas()
+        dados = [{
+            'nome': nome,
+            'quantidade': quantidade,
+            'preco': preco
+        } for f in self.frutas.values()]
+        self.db.overwrite(dados)
 
     def mostrar_estoque(self):
         if not self.frutas:
@@ -69,3 +72,4 @@ class Estoque:
                 break
             else:
                 print("Opção inválida!")
+

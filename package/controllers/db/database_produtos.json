@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "nome": "Banana 1000",
+        "quantidade": 0,
+        "preco": 40.0
+    },
+    {
+        "nome": "Maçã",
+        "quantidade": 0,
+        "preco": 900.0
+    }
+]

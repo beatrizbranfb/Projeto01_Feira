@@ -61,4 +61,6 @@ o cliente é removido da lista.
 trega não esteja cadastrado, o trabalhador é informa-
 do que o cliente não possui registro.
 
+LOGIN E SENHA PARA ADMNISTRADOR: login123 senha321
+
 

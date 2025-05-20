@@ -15,7 +15,6 @@ class TelaCliente:
         contato = input("Qual o seu número para contato?: ")
         residencia = input("Qual o seu endereço?: ")
         self.cliente = Cliente(nome, contato, residencia)
-        self.db.add(self.cliente.__dict__)
 
     def menu(self):
         self.dados()
@@ -101,11 +100,18 @@ class TelaCliente:
             "total": total
         }
 
-        clientes = self.db.get_all() 
+        clientes = self.db.read()
         for cliente in clientes:
-            if cliente["nome"] == self.cliente.nome and cliente["contato"] == self.cliente.contato:
+            if cliente["nome"] == self.cliente.nome:
                 cliente.setdefault("pedidos", []).append(novo_pedido)
                 break
+        else:
+            novo_cliente = self.cliente.__dict__.copy()
+            novo_cliente["pedidos"] = [novo_pedido]
+            clientes.append(novo_cliente)
+
+        self.db.overwrite(clientes)
+
 
         self.db.overwrite(clientes) 
         produtos_atualizados = [fruta.__dict__ for fruta in self.estoque.frutas.values()]

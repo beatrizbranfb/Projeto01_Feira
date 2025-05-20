@@ -12,7 +12,7 @@ class TelaAdm:
 
     def menu(self):
         while True:
-            print("\n======== MENU DO ADMINISTRADOR ========")
+            print("\n========MENU DO ADMINISTRADOR========")
             print("1. Mostrar clientes")
             print("2. Acessar estoque")
             print("3. Confirmar entrega para um cliente")

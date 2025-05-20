@@ -13,7 +13,7 @@ class Feira:
 
     def menu(self):
         while True:
-            print("\n-------- FEIRA -------")
+            print("\n----------FEIRA----------")
             print("1. Área do Administrador")
             print("2. Área do Cliente")
             print("3. Sair")

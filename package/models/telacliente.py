@@ -19,7 +19,7 @@ class TelaCliente:
     def menu(self):
         self.dados()
         while True:
-            print("\n--- CARRINHO ---")
+            print("\n--------CARRINHO--------")
             print("1. Listar produtos")
             print("2. Adicionar produto ao carrinho")
             print("3. Remover produto do carrinho")
@@ -45,7 +45,7 @@ class TelaCliente:
         if not self.produtos:
             print("Carrinho vazio.")
         else:
-            print("\n--- CARRINHO ---")
+            print("\n--------CARRINHO--------")
             for nome, qtd in self.produtos.items():
                 print(f"{nome} - {qtd} unidade(s)")
 

@@ -9,7 +9,7 @@ class Feira:
         self.estoque = Estoque()
         self.adm = TelaAdm(self.estoque)
         self.cliente = TelaCliente(self.estoque)
-        self.admin = Administrador("Admin", "login123", "senha321")
+        self.admin = Administrador("login123", "senha321")
 
     def menu(self):
         while True:

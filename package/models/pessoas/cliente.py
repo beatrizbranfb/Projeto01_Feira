@@ -1,8 +1,6 @@
-from package.models.pessoas.pessoa import Pessoa
-
-class Cliente(Pessoa):
+class Cliente():
     def __init__(self, nome, contato, residencia):
-        super().__init__(nome)
+        self.nome = nome
         self.contato = contato
         self.residencia = residencia
 

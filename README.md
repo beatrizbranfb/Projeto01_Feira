@@ -61,6 +61,24 @@ o cliente é removido da lista.
 trega não esteja cadastrado, o trabalhador é informa-
 do que o cliente não possui registro.
 
+----------------DIAGRAMA CASOS DE USO----------------
+Ator: Cliente
+    ├── Visualizar produtos
+    ├── Adicionar produto ao carrinho
+    ├── Remover produto do carrinho
+    ├── Finalizar pedido
+    └── Inserir dados pessoais
+
+Ator: Administrador
+    ├── Listar clientes
+    ├── Acessar estoque
+    └── Confirmar entrega
+
+----------------DIAGRAMA DE CLASSES-----------------
+
+
+---------------PARA UTILIZAR O CÓDIGO---------------
+
 LOGIN E SENHA PARA ADMNISTRADOR: login123 senha321
 
 

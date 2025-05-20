@@ -37,4 +37,4 @@ class Feira:
     def __login_admin(self):
         login = input("Digite o login do administrador: ")
         senha = input("Digite a senha do administrador: ")
-        return login == self.admin.login and senha == self.admin.senha
+        return login == self.admin.login and senha == self.admin.senha    

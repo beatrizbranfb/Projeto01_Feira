@@ -1,9 +1,10 @@
+#Possui polimorfismo em relação à estoque, pois "adicionar_fruta" add ao carrinho, ao invés de add ao estoque
 from package.models.produtos.estoque import Estoque
 from package.models.pessoas.cliente import Cliente
 from package.controllers.serialobjson import DataRecord
 
 class TelaCliente:
-    def __init__(self, estoque: Estoque):
+    def __init__(self, estoque: Estoque): #Associação pois estoque utiliza Estoque como base
         self.estoque = estoque
         self.produtos = {}
         self.db = DataRecord("package/controllers/db/database_clientes.json")
@@ -30,7 +31,7 @@ class TelaCliente:
             if opcao == "1":
                 self.listar_carrinho()
             elif opcao == "2":
-                self.adicionar_produto()
+                self.adicionar_fruta()
             elif opcao == "3":
                 produto = input("Produto a remover: ").strip().title()
                 self.remover_produto(produto)
@@ -49,7 +50,7 @@ class TelaCliente:
             for nome, qtd in self.produtos.items():
                 print(f"{nome} - {qtd} unidade(s)")
 
-    def adicionar_produto(self):
+    def adicionar_fruta(self):
         self.estoque.mostrar_estoque()
         nome = input("Produto a adicionar: ").strip().title()
         if nome not in self.estoque.frutas:

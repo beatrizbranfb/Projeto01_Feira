@@ -7,7 +7,7 @@ class Estoque:
         self.frutas = {}
         self.__carregar_frutas()
 
-    def __carregar_frutas(self):
+    def __carregar_frutas(self): 
         dados = self.db.read()
         if dados:
             for f in dados:
@@ -52,7 +52,7 @@ class Estoque:
         if not self.frutas:
             print("Estoque vazio.")
         else:
-            print("\n--- ESTOQUE ATUAL ---")
+            print("\n-------ESTOQUE ATUAL-------")
             for fruta in self.frutas.values():
                 print(fruta)
 

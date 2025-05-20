@@ -9,7 +9,7 @@ class Feira:
         self.estoque = Estoque()
         self.adm = TelaAdm(self.estoque)
         self.cliente = TelaCliente(self.estoque)
-        self.admin = Administrador("login123", "senha321")
+        self.admin = Administrador("Admin", "login123", "senha321")
 
     def menu(self):
         while True:
@@ -34,7 +34,7 @@ class Feira:
             else:
                 print("Opção inválida.")
 
-    def __login_admin(self):
+    def __login_admin(self): #encapsulamento privado pois não é utilizado apenas nessa classe
         login = input("Digite o login do administrador: ")
         senha = input("Digite a senha do administrador: ")
         return login == self.admin.login and senha == self.admin.senha    
